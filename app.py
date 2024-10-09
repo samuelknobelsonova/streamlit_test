@@ -2,6 +2,7 @@ import streamlit as st
 import altair as alt
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 st.set_page_config(layout="wide")
 regions = ["LATAM", "EMEA", "NA", "APAC"]
@@ -161,8 +162,21 @@ sellers_monthly_pie = (
     .properties(width=150, height=150, title="Sellers transactions per month")
 )
 
-
-
 top_row = region_pie | region_summary
 full_chart = top_row & sellers_monthly_pie
 st.altair_chart(full_chart)
+
+# with st.sidebar:
+#     st.write('sidebar')
+
+tab1, tab2 = st.tabs(["tab1", "tab2"])
+with tab1:
+    "tab1"
+    top_row = region_pie | region_summary
+    st.altair_chart(top_row)
+
+with tab2:
+    "Tab2"
+    st.altair_chart(sellers_monthly_pie)
+
+
